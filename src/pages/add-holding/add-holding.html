@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>Adicionar Coin</ion-title>
+    <ion-buttons end>
+      <button ion-button type="submit"
+              form="holding-form"
+              [disabled]="!form.valid">
+        Salvar
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-card>
+    <ion-item>
+      {{ listing?.name }} : {{ listing?.symbol }}
+      <img class="coin-logo" *ngIf="listing" [src]="getIconImage(listing.id)" item-end>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <form id="holding-form" [formGroup]="form" (submit)="saveCoin()" novalidate>
+        <ion-item>
+          <ion-label stacked>Total</ion-label>
+          <ion-input type="number" placeholder="Quantidade"
+                     formControlName="amount"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Preço da trade
+            <ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>
+          </ion-label>
+          <ion-input type="number" [value]="quote?.quotes.BTC.price | number: '1.0-8'"
+                     placeholder="Preço"
+                     formControlName="price"></ion-input>
+        </ion-item>
+      </form>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

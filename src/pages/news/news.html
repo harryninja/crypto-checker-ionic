@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>Notícias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="background">
+
+  <ion-refresher (ionRefresh)="refreshHoldings($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-card *ngFor="let article of news" class="animated flipInX">
+      <button ion-item  text-wrap
+              (click)="utilityProvider.openBrowser(article.url)">
+        <ion-thumbnail item-start>
+          <img [src]="article.imageurl">
+        </ion-thumbnail>
+        <h4 class="news-title">{{ article.title }}</h4>
+        <p class="news-body">{{ articleDescription(article.body) }}</p>
+      </button>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

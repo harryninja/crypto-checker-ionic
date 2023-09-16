@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Contato</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background">
+
+  <ion-card class="animated fadeInDown">
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-8>
+        <img class="animated pulse infinite" src="assets/imgs/tones.jpg">
+      </ion-col>
+      <ion-col col-2></ion-col>
+    </ion-row>
+    <ion-card-content class="profile-name">
+      Harold illert
+      <a class="profile-url" href="https://harryninja.github.io">Meu portfólio</a>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="animated flipInX" (click)="openBrowser('https://github.com/harryninja/crypto-checker-ionic')">
+    <ion-item>
+      <i class="fa fa-github social-icon"></i>
+      <div item-end class="contact-info">
+        @harryninja/crypto-checker-ionic
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="animated flipInX" (click)="openBrowser('https://www.linkedin.com/in/harold-illert/')">
+    <ion-item>
+      <i class="fa fa-linkedin social-icon"></i>
+      <div item-end class="contact-info">
+        @harold-illert
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="animated flipInX">
+    <ion-item>
+      <ion-icon class="social-icon" name="md-mail"></ion-icon>
+      <div item-end class="contact-info">
+        <a href="mailto:haroldillert@gmail.com">haroldillert@gmail.com</a>
+      </div>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

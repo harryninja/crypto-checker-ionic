@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title>
+      Crypto Checker
+    </ion-title>
+    <ion-buttons>
+      <button ion-button icon-only (click)="toggleDisplay()" color="dark">
+        <ion-icon *ngIf="isDisplayFiat" name="logo-usd"></ion-icon>
+        <ion-icon *ngIf="!isDisplayFiat" name="logo-bitcoin"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addCoin()" color="dark">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background">
+
+  <ion-card (click)="toggleDisplay()">
+    <ion-card-content class="main-card">
+      <div class="main-card-title">
+        <div id="total-balance-USD">$0.0</div>
+        <p id="total-balance-BTC">0 BTC</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-refresher (ionRefresh)="refreshHoldings($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-card *ngFor="let holding of holdings; let i = index" class="animated flipInX">
+      <ion-item-sliding #slidingItem>
+        <button ion-item detail-none (click)="coinInfo(holding)">
+          <ion-avatar item-start>
+            <img [src]="getIconImage(holding)">
+          </ion-avatar>
+          {{ holding.quote.name }}
+          <p class="coin-description" *ngIf="isDisplayFiat || holding.symbol === 'BTC'">
+            {{ holding.amount }} {{ holding.quote.symbol }} ({{ holding.quote.quotes.USD.price * holding.amount |
+            currency }})
+          </p>
+          <p class="coin-description" *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'">
+            {{ holding.amount }} {{ holding.quote.symbol }} (<ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>
+            {{ holding.quote.quotes.BTC.price * holding.amount | number: "1.0-2" }})
+          </p>
+          <span class="coin-price" *ngIf="isDisplayFiat || holding.symbol === 'BTC'" item-end>
+            {{ holding.quote.quotes.USD.price | currency }}
+          </span>
+          <span class="coin-price" *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'" item-end>
+            <ion-icon class="btc-icon-large" name="logo-bitcoin"></ion-icon>
+              {{ holding.quote.quotes.BTC.price | number: "1.0-8" }}
+          </span>
+        </button>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="promptRemoveCoin(holding, i, slidingItem)">
+            <ion-icon name="trash"></ion-icon>
+            Remover
+          </button>
+          <button ion-button color="secondary" (click)="editCoin(holding, i, slidingItem)">
+            <ion-icon name="build"></ion-icon>
+            Editar
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+
+    <ion-card (click)="addCoin()" class="add-coin">
+        <ion-icon class="add-coin-icon add-coin-items" name="add-circle-outline"></ion-icon>
+        <div class="add-coin-items">Adicionar Coin</div>
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>

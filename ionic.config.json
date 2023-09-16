@@ -1,0 +1,7 @@
+{
+  "name": "crypto-checker",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

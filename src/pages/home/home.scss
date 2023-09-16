@@ -1,0 +1,48 @@
+page-home {
+
+  .background {
+    background: linear-gradient(to bottom right, #4B79A1, #283E51);
+  }
+
+  .main-card {
+    text-align: center;
+  }
+
+  .main-card-title {
+    font-size: 24px;
+    width: 100%;
+  }
+
+  .btc-icon-small {
+    font-size: 12px;
+  }
+
+  .btc-icon-large {
+    font-size: 16px;
+  }
+
+  .coin-description {
+    font-size: 12px;
+  }
+
+  .add-coin {
+    background-color: rgba(0, 0, 0, 0.0);
+    text-align: center;
+    font-size: 12px;
+    padding: 7px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);
+  }
+
+  .add-coin-items {
+    color: white;
+  }
+
+  .add-coin-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .coin-price {
+    font-size: 14px;
+  }
+}
